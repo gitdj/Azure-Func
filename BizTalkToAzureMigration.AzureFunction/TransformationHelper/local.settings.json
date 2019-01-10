@@ -1,0 +1,7 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=azurestoragedj;AccountKey=z82Q0GXF/X6ySTUoU+zB2nRm1UXwfUoy5KG2+CD/K3cpLNDf9HSjOjhDliu4MDZ5rxX+IRe6Gmz1OXM4mtawjw==;BlobEndpoint=https://azurestoragedj.blob.core.windows.net/;TableEndpoint=https://azurestoragedj.table.core.windows.net/;QueueEndpoint=https://azurestoragedj.queue.core.windows.net/;FileEndpoint=https://azurestoragedj.file.core.windows.net/",
+        "AzureWebJobsDashboard": "DefaultEndpointsProtocol=https;AccountName=azurestoragedj;AccountKey=z82Q0GXF/X6ySTUoU+zB2nRm1UXwfUoy5KG2+CD/K3cpLNDf9HSjOjhDliu4MDZ5rxX+IRe6Gmz1OXM4mtawjw==;BlobEndpoint=https://azurestoragedj.blob.core.windows.net/;TableEndpoint=https://azurestoragedj.table.core.windows.net/;QueueEndpoint=https://azurestoragedj.queue.core.windows.net/;FileEndpoint=https://azurestoragedj.file.core.windows.net/"
+    }
+}

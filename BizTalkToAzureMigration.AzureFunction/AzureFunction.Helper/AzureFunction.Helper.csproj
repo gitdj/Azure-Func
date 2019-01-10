@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="XSLT\1To1Passthru.xsl" />
+    <None Remove="XSLT\1To1Passthru_extxml.xml" />
+    <None Remove="XSLT\InToOut.xsl" />
+    <None Remove="XSLT\InToOut_extxml.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="XSLT\1To1Passthru.xsl" />
+    <Content Include="XSLT\1To1Passthru_extxml.xml" />
+    <EmbeddedResource Include="XSLT\InToOut.xsl" />
+    <EmbeddedResource Include="XSLT\InToOut_extxml.xml" />
+  </ItemGroup>
+
+</Project>
