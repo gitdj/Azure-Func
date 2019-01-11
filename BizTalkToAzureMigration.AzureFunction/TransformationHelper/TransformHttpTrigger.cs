@@ -6,35 +6,37 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using AzureFunction.Helper;
+using System.Text;
+
 namespace TransformationHelper
 {
     public static class TransformHttpTrigger
     {
         [FunctionName("TransformAPI")]
-        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
             log.Info("C# HTTP trigger function processed a request.");
 
             // parse query parameter
-            string name = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
+            string mapName = req.GetQueryNameValuePairs()
+                .FirstOrDefault(q => string.Compare(q.Key, "MapName", true) == 0)
                 .Value;
+            
 
-            //if (name == null)
-            //{
-            //    // Get request body
-            //    dynamic data = await req.Content.ReadAsAsync<object>();
-            //    name = data?.name;
-            //}
-
-            string request = await req.Content.ReadAsStringAsync();
+            byte[] request = await req.Content.ReadAsByteArrayAsync();
 
             TransformHelper helperobj = new TransformHelper();
-            name = helperobj.Transform(name, request);
-          
-            return name == null
-                ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
-                : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
+            //name = helperobj.Transform(name, request);
+
+            string response = await helperobj.ExecuteTransform(request, mapName);
+
+            return mapName == null
+                ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string & in the request body")
+                : new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest)
+                {
+                    Content = new StringContent(response, Encoding.Default, @"application/xml"),
+                };
+
         }
     }
 }
